@@ -31,7 +31,7 @@ public class WeatherProcessImpl implements WeatherProcess {
 		try {
 			zipAndCountryResponse = future.get();
 		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
+			// TODO add some logging configuration and write everything to a file
 			e.printStackTrace();
 		}
 		return zipAndCountryResponse;
