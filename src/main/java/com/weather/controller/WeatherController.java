@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.weather.domain.GetWeatherJSONResponse;
 import com.weather.domain.GetWeatherResponse;
 import com.weather.process.WeatherProcess;
 
@@ -29,10 +30,12 @@ public class WeatherController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getWeather", method = RequestMethod.GET)
-	GetWeatherResponse getZipCodeAndReturnWeather(@RequestParam(value = "zip", defaultValue = "20001") String zipCode,
-			@RequestParam(value = "country", defaultValue = "us") String countryCode) {
-		GetWeatherResponse respone = weatherProcess.getWeather("20001", "us");
-		return respone;
+	GetWeatherJSONResponse getZipCodeAndReturnWeather(@RequestParam(value = "zip", defaultValue = "20001") String zipCode,
+			@RequestParam(value = "countryCode", defaultValue = "us") String countryCode) {
+		GetWeatherJSONResponse jsonResponse = new GetWeatherJSONResponse();
+		GetWeatherResponse respone = weatherProcess.getWeather(zipCode, countryCode);
+		jsonResponse.setCode(respone.getResponseCode());
+		return jsonResponse;
 	}
 
 }
