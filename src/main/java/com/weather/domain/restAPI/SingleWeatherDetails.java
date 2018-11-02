@@ -1,37 +1,39 @@
 package com.weather.domain.restAPI;
 
-import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SingleWeatherDetails {
 	
-	private String dt;
+	private long dt;
 	
-	private List<TemperatureDetails> tempratureDetails;
+	private List<TemperatureDetails> main;
 	
-	private Date dt_txt;
+	private String dt_txt;
 
-	public String getDt() {
+	public long getDt() {
 		return dt;
 	}
 
-	public void setDt(String dt) {
+	public void setDt(long dt) {
 		this.dt = dt;
 	}
 
-	public List<TemperatureDetails> getTempratureDetails() {
-		return tempratureDetails;
+	public List<TemperatureDetails> getMain() {
+		return main;
 	}
 
-	public void setTempratureDetails(List<TemperatureDetails> tempratureDetails) {
-		this.tempratureDetails = tempratureDetails;
+	public void setTempratureDetails(List<TemperatureDetails> main) {
+		this.main = main;
 	}
 
-	public Date getDt_txt() {
+	public String getDt_txt() {
 		return dt_txt;
 	}
 
-	public void setDt_txt(Date dt_txt) {
+	public void setDt_txt(String dt_txt) {
 		this.dt_txt = dt_txt;
 	}
 

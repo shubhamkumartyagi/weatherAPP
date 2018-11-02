@@ -6,15 +6,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.weather.domain.restAPI.SingleWeatherDetails;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OpenMapApiReposneJSON {
+public class OpenMapApiReposneJSON{
 	
 	private String cod;
 	
 	private String message;
 	
-	private String cnt;
+	private int cnt;
 	
-	private List<SingleWeatherDetails> detailedWeather;
+	private String country;
+	
+	private List<SingleWeatherDetails> list;
 
 	public String getCod() {
 		return cod;
@@ -32,20 +34,29 @@ public class OpenMapApiReposneJSON {
 		this.message = message;
 	}
 
-	public String getCnt() {
+	public int getCnt() {
 		return cnt;
 	}
 
-	public void setCnt(String cnt) {
+	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
 
-	public List<SingleWeatherDetails> getDetailedWeather() {
-		return detailedWeather;
+
+	public String getCountry() {
+		return country;
 	}
 
-	public void setDetailedWeather(List<SingleWeatherDetails> detailedWeather) {
-		this.detailedWeather = detailedWeather;
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public List<SingleWeatherDetails> getList() {
+		return list;
+	}
+
+	public void setList(List<SingleWeatherDetails> list) {
+		this.list = list;
 	}
 
 }

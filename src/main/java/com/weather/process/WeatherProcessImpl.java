@@ -1,6 +1,5 @@
 package com.weather.process;
 
-import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -8,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.weather.command.WeatherForecastCommand;
 import com.weather.domain.GetWeatherRequest;
 import com.weather.domain.GetWeatherResponse;
-import com.weather.domain.OpenMapApiReposneJSON;
 
 @Component
 public class WeatherProcessImpl implements WeatherProcess {
@@ -30,18 +27,13 @@ public class WeatherProcessImpl implements WeatherProcess {
 		zipAndCountryRequest.setCountryCode(country);
 		WeatherForecastCommand weatherCommand = (WeatherForecastCommand) applicationContext
 				.getBean(WEATHER_FORECAST_COMMAND, zipAndCountryRequest);
-		Future<String> future = weatherCommand.queue();
-
-		ObjectMapper mapper = new ObjectMapper();
+		Future<GetWeatherResponse> future = weatherCommand.queue();
 		try {
-			OpenMapApiReposneJSON value = mapper.readValue(future.get(), OpenMapApiReposneJSON.class);
-			zipAndCountryResponse.setResponseCode(value.getCod());
-			zipAndCountryResponse.setResponseBody(value.getDetailedWeather());
-		} catch (IOException | InterruptedException | ExecutionException e) {
+			zipAndCountryResponse = future.get();
+		} catch (InterruptedException | ExecutionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return zipAndCountryResponse;
 	}
 
