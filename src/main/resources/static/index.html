@@ -36,14 +36,18 @@
 			<span class="input-group-text" id="basic-addon1">Country Code</span>
 		</div>
 		<input id="countryCode" type="text" class="form-control"
-			placeholder="country code" aria-label="country code"
-			aria-describedby="basic-addon1">
+			placeholder="us" aria-label="country code"
+			aria-describedby="basic-addon1" value="us" disabled></input>
 	</div>
 
 	<div>
 		<button id="submit" type="button" class="btn btn-primary"
 			onclick="onClick()">Weather Report</button>
 
+	</div>
+
+	<div class="panel panel-default">
+		<div id="resultpanel" class="panel-body"></div>
 	</div>
 
 </body>

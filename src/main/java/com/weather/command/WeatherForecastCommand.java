@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netflix.config.ConfigurationManager;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.weather.domain.GetWeatherRequest;
@@ -55,8 +54,6 @@ public class WeatherForecastCommand extends HystrixCommand<GetWeatherResponse> {
 
 	public WeatherForecastCommand(GetWeatherRequest zipAndCountry) {
 		super(HystrixCommandGroupKey.Factory.asKey("ExampleWeatherApp"));
-		ConfigurationManager.getConfigInstance().setProperty(
-				"hystrix.command.ExampleWeatherApp.execution.isolation.thread.timeoutInMilliseconds", new Long(30000));
 		this.zipAndCountry = zipAndCountry;
 	}
 

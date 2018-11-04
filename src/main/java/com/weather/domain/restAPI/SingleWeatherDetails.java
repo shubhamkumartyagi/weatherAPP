@@ -1,7 +1,5 @@
 package com.weather.domain.restAPI;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -9,7 +7,7 @@ public class SingleWeatherDetails {
 	
 	private long dt;
 	
-	private List<TemperatureDetails> main;
+	private TemperatureDetails main;
 	
 	private String dt_txt;
 
@@ -21,11 +19,11 @@ public class SingleWeatherDetails {
 		this.dt = dt;
 	}
 
-	public List<TemperatureDetails> getMain() {
+	public TemperatureDetails getMain() {
 		return main;
 	}
 
-	public void setTempratureDetails(List<TemperatureDetails> main) {
+	public void setTempratureDetails(TemperatureDetails main) {
 		this.main = main;
 	}
 

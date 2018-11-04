@@ -1,7 +1,5 @@
 package com.weather.domain;
 
-import org.springframework.stereotype.Component;
-
 /**
  * Domain object class for the Request object to Open Map REST API
  * @author shubham kumar
