@@ -11,6 +11,9 @@ There is an external REST API call to 'open weather' using netflix hystrix which
 Hit 'http:localhost:8080/index.html' and you are good to go. 
 2) Executable jar file: Run the package using maven by the following command: 'mvn install' in the main directory where your pom file is located and after the successful execution you should be able to find see jar in target folder.
 
+### Sample Request and Response
+![sample_request_response](https://user-images.githubusercontent.com/44669879/47965577-f7031980-e06e-11e8-8d66-5b08214dd49a.png)
+
 
 #### Known issues:
 1) This application is well test using multiple zip code. But there may be a case that it does not work for the first time because of hystrix issue 'https://stackoverflow.com/questions/36071841/spring-cloud-hystrix-fails-at-first-command-call'.
