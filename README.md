@@ -10,6 +10,7 @@ There is an external REST API call to 'open weather' using netflix hystrix which
 1) Eclipse: You can import this project directly into your Eclipse under the name 'weatherAPP' and simply run as a Spring Boot application to get things working.
 Hit 'http:localhost:8080/index.html' and you are good to go. 
 2) Executable jar file: Run the package using maven by the following command: 'mvn install' in the main directory where your pom file is located and after the successful execution you should be able to find see jar in target folder.
+3) You can directly access the aplication from AWS by navigating to the url 'http://waetherapp.us-east-2.elasticbeanstalk.com/'
 
 ### Sample Request and Response
 ![sample_request_response](https://user-images.githubusercontent.com/44669879/47965577-f7031980-e06e-11e8-8d66-5b08214dd49a.png)
