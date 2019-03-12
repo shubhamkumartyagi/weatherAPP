@@ -19,4 +19,7 @@ spec:
       - name: weatherapp
         image: niteshmnit/weatherapp:firsttry
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+      dnsConfig:
+        nameservers:
+          - 8.8.8.8
