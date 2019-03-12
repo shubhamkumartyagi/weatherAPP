@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: weatherapp
-        image: niteshmnit/weatherapp
+        image: niteshmnit/weatherapp:firsttry
         ports:
         - containerPort: 80
