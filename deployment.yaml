@@ -18,5 +18,6 @@ spec:
       containers:
       - name: weatherapp
         image: weatherapp
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
