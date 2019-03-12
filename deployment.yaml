@@ -17,7 +17,6 @@ spec:
     spec:
       containers:
       - name: weatherapp
-        image: weatherapp
-        imagePullPolicy: Never
+        image: niteshmnit/weatherapp
         ports:
         - containerPort: 80
