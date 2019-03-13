@@ -20,6 +20,3 @@ spec:
         image: niteshmnit/weatherapp:firsttry
         ports:
         - containerPort: 8080
-      dnsConfig:
-        nameservers:
-          - 8.8.8.8
