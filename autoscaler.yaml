@@ -14,8 +14,8 @@ spec:
   metrics:
   - type: Object
     object:
-      target:
-      kind: Service
-      name: weatherapp-service
       metricName: http_request
+      target:
+        kind: Service
+        name: weatherapp-service
       targetValue: 2
