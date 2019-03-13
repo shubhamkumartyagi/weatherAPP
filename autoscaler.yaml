@@ -12,10 +12,10 @@ spec:
   minReplicas: 2
   maxReplicas: 5
   metrics:
-      - type: Object
+  - type: Object
     object:
-        target:
-        kind: Service
-        name: weatherapp-service
-        metricName: http_request
-        targetValue: 2
+      target:
+      kind: Service
+      name: weatherapp-service
+      metricName: http_request
+      targetValue: 2
