@@ -1,0 +1,21 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: weatherapp-hpa
+  labels:
+    app: weatherapp-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: weatherapp
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+      - type: Object
+    object:
+        target:
+        kind: Service
+        name: weatherapp-service
+        metricName: http_request
+        targetValue: 2
