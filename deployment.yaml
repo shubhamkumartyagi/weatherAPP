@@ -6,7 +6,7 @@ metadata:
     app: weatherapp
     type: deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: weatherapp
@@ -16,7 +16,8 @@ spec:
         app: weatherapp
     spec:
       containers:
-      - name: weatherapp
-        image: niteshmnit/weatherapp:firsttry
+      - name: weather
+        image: weather:1.0
         ports:
         - containerPort: 8080
+        imagePullPolicy: Never
