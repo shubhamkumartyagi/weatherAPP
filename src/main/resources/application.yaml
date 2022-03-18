@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:
+  devtools:
+    restart:
+      enabled: true
+open:
+  weather:
+    map:
+      key: cbe32db57fc0a6f1c69bdeb047ab27ee
+      url: https://api.openweathermap.org/data/
