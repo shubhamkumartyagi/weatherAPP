@@ -1,5 +1,6 @@
 package com.weather.controller;
 
+import com.weather.process.WeatherProcess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.weather.domain.GetWeatherJSONResponse;
 import com.weather.domain.GetWeatherResponse;
 import com.weather.domain.restAPI.SingleWeatherDetails;
-import com.weather.process.WeatherProcess;
 import com.weather.util.WeatherControllerUtility;
 
 /**
@@ -36,13 +36,11 @@ public class WeatherController {
 			@RequestParam(value = "zip", defaultValue = "20001") String zipCode,
 			@RequestParam(value = "countryCode", defaultValue = "us") String countryCode) {
 		GetWeatherJSONResponse jsonResponse = new GetWeatherJSONResponse();
-		GetWeatherResponse respone = weatherProcess.getWeather(zipCode, countryCode);
-		SingleWeatherDetails minimumTemprature = WeatherControllerUtility.getCoolestWeather(respone.getResponseBody());
-		if (minimumTemprature != null) {
-			jsonResponse.setCoolestTemperature(
-					minimumTemprature.getDt_txt() + " at temperature is: " + minimumTemprature.getMain().getTemp());
-		}
-		jsonResponse.setCode(respone.getResponseCode());
+		GetWeatherResponse response = weatherProcess.getWeather(zipCode, countryCode);
+		SingleWeatherDetails minimumTemperature = WeatherControllerUtility.getCoolestWeather(response.getDetailedWeather());
+		jsonResponse.setCoolestTemperature(
+				minimumTemperature.getDt_txt() + " at temperature is: " + minimumTemperature.getMain().getTemp());
+		jsonResponse.setCode(response.getResponseCode());
 		return jsonResponse;
 	}
 

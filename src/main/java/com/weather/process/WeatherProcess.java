@@ -1,24 +1,40 @@
 package com.weather.process;
 
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+
+import com.weather.command.WeatherForecastCommand;
+import com.weather.domain.GetWeatherRequest;
 import com.weather.domain.GetWeatherResponse;
 
-/**
- * This is a business logic class for weather app which connects to external services to fetch data.
- * 
- * External weather REST API used is: <a href="https://openweathermap.org/api">Open Weather Map</a>
- * @author shubham kumar
- *
- */
-public interface WeatherProcess {
+//TODO: Use Hystrix Annotation instead of old command way.
+@Component
+public class WeatherProcess {
 
-	/**
-	 * This process method will perform the business logic for fetching the data for weather app and also
-	 * map the same to domain object for our application.
-	 * @param zipCode 
-	 * @param country
-	 * @return
-	 * 	the detailed weather report
-	 */
-	public GetWeatherResponse getWeather(String zipCode, String country);
-	
+	private static final String WEATHER_FORECAST_COMMAND = "weatherForecastCommand";
+
+	@Autowired
+	ApplicationContext applicationContext;
+
+	public GetWeatherResponse getWeather(String zipCode, String country) {
+		GetWeatherResponse zipAndCountryResponse = new GetWeatherResponse();
+		GetWeatherRequest zipAndCountryRequest = new GetWeatherRequest();
+		zipAndCountryRequest.setZip(zipCode);
+		zipAndCountryRequest.setCountryCode(country);
+		WeatherForecastCommand weatherCommand = (WeatherForecastCommand) applicationContext
+				.getBean(WEATHER_FORECAST_COMMAND, zipAndCountryRequest);
+		Future<GetWeatherResponse> future = weatherCommand.queue();
+		try {
+			zipAndCountryResponse = future.get();
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO add some logging configuration and write everything to a file
+			e.printStackTrace();
+		}
+		return zipAndCountryResponse;
+	}
+
 }

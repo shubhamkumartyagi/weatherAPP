@@ -37,12 +37,8 @@ public class WeatherControllerUtility {
 				Calendar c = Calendar.getInstance(); 
 				c.setTime(datePlusOne); 
 				c.add(Calendar.DATE, 1);
-				datePlusOne = c.getTime();		
-				if(DateUtils.isSameDay(dateFromAPI, datePlusOne)) {
-					return true;
-				} else {
-					return false;
-				}
+				datePlusOne = c.getTime();
+				return DateUtils.isSameDay(dateFromAPI, datePlusOne);
 			} catch (ParseException e) {
 				// TODO add logger and also write exception to a file
 				e.printStackTrace();

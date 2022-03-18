@@ -1,5 +1,8 @@
 package com.weather.domain;
 
+import lombok.Data;
+
+@Data
 public class GetWeatherJSONResponse {
 	
 	/**
@@ -11,21 +14,4 @@ public class GetWeatherJSONResponse {
 	 * coolest temperature and time
 	 */
 	private String coolestTemperature;
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getCoolestTemperature() {
-		return coolestTemperature;
-	}
-
-	public void setCoolestTemperature(String coolestTemperature) {
-		this.coolestTemperature = coolestTemperature;
-	}
-
 }

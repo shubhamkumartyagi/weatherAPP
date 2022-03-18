@@ -38,7 +38,7 @@ public class WeatherForecastCommand extends HystrixCommand<GetWeatherResponse> {
 	private static final String VERSION_AND_END_POINT = "2.5/forecast?zip=";
 
 	/* Request for the external call */
-	private GetWeatherRequest zipAndCountry;
+	private final GetWeatherRequest zipAndCountry;
 
 	/* Open Map REST URL */
 	private static final String OPEN_WEATHER_MAP_URL = "open.weather.map.url";
@@ -58,7 +58,7 @@ public class WeatherForecastCommand extends HystrixCommand<GetWeatherResponse> {
 	}
 
 	@Override
-	public GetWeatherResponse run() throws Exception {
+	public GetWeatherResponse run() {
 		GetWeatherResponse zipAndCountryResponse = new GetWeatherResponse();
 		try {
 	 
@@ -73,7 +73,7 @@ public class WeatherForecastCommand extends HystrixCommand<GetWeatherResponse> {
 			mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 			OpenMapApiReposneJSON value = mapper.readValue(EntityUtils.toString(entity), OpenMapApiReposneJSON.class);
 			zipAndCountryResponse.setResponseCode(value.getCod());
-			zipAndCountryResponse.setResponseBody(value.getList());
+			zipAndCountryResponse.setDetailedWeather(value.getList());
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
